@@ -29,11 +29,11 @@ export const createProfile = (createProfileRequest) => {
   })
 }
 const Form = () =>{
-    let [usernameState,setusernameState] = useState("");
+    let [daoNameState,setDAONameState] = useState("");
     let [aboutDAOState,setAboutDAOState] = useState("");
     let [feesState,setFeesState] = useState("");
-    let [walletState,setWalletState] = useState("")
-    let [languageState,setLanguageState] = useState("")
+    let [walletState,setWalletState] = useState("");
+    let [languageState,setLanguageState] = useState("");
     const feeStructure = {
         feeFollowModule: {
         amount: {
@@ -47,7 +47,7 @@ const Form = () =>{
 };
     const createProfileRequest = 
     { 
-        handle: usernameState, 
+        handle: daoNameState, 
         
         followModule: feeStructure
     }
@@ -55,18 +55,28 @@ const Form = () =>{
 const handleAboutDAO =(e)=>{
     setAboutDAOState(e.target.value);
 }
-    const handleUsername=(e) => {
- setusernameState(e.target.value);
-      }// hi
+    const handleDAOname=(e) => {
+ setDAONameState(e.target.value);
+      }
     const handleOtherData=(e) => {
         setLanguageState(e.target.value);
            }
+           const showOtherField = () =>{
+               document.getElementById('insertinputs').style.display ="block";
+           
+        }
+        const hideOtherField = () => {
+            document.getElementById('insertinputs').style.display ="none"
+            document.getElementById('otherdata').value ="";
+        }
+        
     const handleLanguageChange=(e) => {
         if(e.target.value === 'Other'){
-
+        showOtherField()
         }
-        else{
-        setLanguageState(e.target.value);
+         else{
+            hideOtherField()
+         setLanguageState(e.target.value);
         }
            }
     const handleFees=(e) => {
@@ -92,7 +102,7 @@ const handleAboutDAO =(e)=>{
         <form>
     <div className="mb-3">
         <label className="form-label" htmlFor="inputDAOName">DAO Name*</label>
-        <input type="text" onChange={handleUsername} className="form-control" id="inputDAOName" placeholder="Name" required/>
+        <input type="text" onChange={handleDAOname} className="form-control" id="inputDAOName" placeholder="Name" required/>
         
     </div>
     <div className='mb-3'>
@@ -111,7 +121,7 @@ const handleAboutDAO =(e)=>{
     </div>
     <div  id="insertinputs">
                 <input className="input" type="text" onChange={handleOtherData} 
-                name='other' placeholder="Enter skill" id='otherdata'></input>
+                name='other' placeholder="Enter Language" id='otherdata'></input>
             </div>
     <div className="mb-3">
         <label className="form-label" htmlFor="inputAboutDAO">About the DAO (optional)</label>
